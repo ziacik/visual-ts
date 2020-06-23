@@ -25,7 +25,8 @@
 		"update": "ng update @nrwl/workspace",
 		"workspace-schematic": "nx workspace-schematic",
 		"dep-graph": "nx dep-graph",
-		"help": "nx help"
+		"help": "nx help",
+		"fixtabs": "prettier --write \"./**/*.{js,ts,json,html}\" --use-tabs --single-quote"
 	},
 	"private": true,
 	"dependencies": {
