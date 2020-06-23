@@ -16,7 +16,8 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@visual-ts/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+			"@visual-ts/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+			"@visual-ts/analyzer": ["libs/analyzer/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]
