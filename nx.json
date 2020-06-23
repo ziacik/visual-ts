@@ -19,13 +19,6 @@
 		}
 	},
 	"projects": {
-		"visual-ts": {
-			"tags": []
-		},
-		"visual-ts-e2e": {
-			"tags": [],
-			"implicitDependencies": ["visual-ts"]
-		},
 		"api": {
 			"tags": []
 		},
