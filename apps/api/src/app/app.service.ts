@@ -3,7 +3,7 @@ import { Message } from '@visual-ts/api-interfaces';
 
 @Injectable()
 export class AppService {
-  getData(): Message {
-    return { message: 'Welcome to api!' };
-  }
+	getData(): Message {
+		return { message: 'Welcome to api!' };
+	}
 }
