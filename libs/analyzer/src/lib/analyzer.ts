@@ -1,12 +1,22 @@
-import { Project, Node } from 'ts-morph';
+import { Project, Node, ClassDeclaration } from 'ts-morph';
+
+export interface ClassInfo {
+	name: string;
+	base: ClassInfo;
+}
 
 export class Analyzer {
-	constructor(private tsConfigPath: string) {
+	static readonly messages = {
+	};
+
+	constructor(private project: Project) {
 	}
 
-	analyze(sourceFilePath: string) {
-		const project = new Project({ addFilesFromTsConfig: true, tsConfigFilePath: this.tsConfigPath });
-		const sourceFile = project.getSourceFileOrThrow(sourceFilePath);
+	analyze(sourceFilePath: string, className: string): ClassInfo {
+		const sourceFile = this.project.getSourceFileOrThrow(sourceFilePath);
+		const rootClass = sourceFile.getClassOrThrow(className);
+		return this.analyzeClass(rootClass);
+
 
 		console.log(sourceFile.getClasses().map(it => it.getName()));
 
@@ -78,6 +88,26 @@ export class Analyzer {
 		// const fixedJsSource = hasDependencies ? rewriteSourceMaps(jsSource, (map) => offsetSourceMapLines(map, -1)) : jsSource;
 
 		// return fixedJsSource;
+	}
+
+	private analyzeClass(classDeclaration: ClassDeclaration, level: number = 0): ClassInfo {
+		const baseClass = classDeclaration.getBaseClass();
+
+		return {
+			name: classDeclaration.getName(),
+			base: this.analyzeBase(baseClass, level)
+		};
+	}
+
+
+	private analyzeBase(baseClass: ClassDeclaration, level: number): ClassInfo {
+		if (!baseClass)
+			return null;
+
+		if (level > 5)
+			return { name: 'Out of Recursive // TODO', base: null }; //TODO
+
+		return this.analyzeClass(baseClass, level + 1);
 	}
 
 
