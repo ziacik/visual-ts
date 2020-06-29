@@ -233,6 +233,41 @@
 					}
 				}
 			}
+		},
+		"presenter": {
+			"projectType": "library",
+			"root": "libs/presenter",
+			"sourceRoot": "libs/presenter/src",
+			"prefix": "visual-ts",
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/presenter/tsconfig.lib.json",
+							"libs/presenter/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"!libs/presenter/**/*"
+						]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/presenter/jest.config.js",
+						"tsConfig": "libs/presenter/tsconfig.spec.json",
+						"passWithNoTests": true,
+						"setupFile": "libs/presenter/src/test-setup.ts"
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"style": "scss"
+				}
+			}
 		}
 	},
 	"cli": {

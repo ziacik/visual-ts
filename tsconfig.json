@@ -17,7 +17,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"@visual-ts/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-			"@visual-ts/analyzer": ["libs/analyzer/src/index.ts"]
+			"@visual-ts/analyzer": ["libs/analyzer/src/index.ts"],
+			"@visual-ts/presenter": ["libs/presenter/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

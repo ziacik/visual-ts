@@ -6,25 +6,21 @@ export interface ClassInfo {
 }
 
 export class Analyzer {
-	static readonly messages = {
-	};
+	static readonly messages = {};
 
-	constructor(private project: Project) {
-	}
+	constructor(private project: Project) {}
 
 	analyze(sourceFilePath: string, className: string): ClassInfo {
 		const sourceFile = this.project.getSourceFileOrThrow(sourceFilePath);
 		const rootClass = sourceFile.getClassOrThrow(className);
 		return this.analyzeClass(rootClass);
 
-
-		console.log(sourceFile.getClasses().map(it => it.getName()));
+		console.log(sourceFile.getClasses().map((it) => it.getName()));
 
 		// // initExportsCache(sourceFile);
 		// const allExports = this.findAllExports(project);
 
 		// console.dir(allExports);
-
 
 		// const allDependencies = new Set();
 		// const allIdentifierReplacementDescriptors = [];
@@ -95,21 +91,17 @@ export class Analyzer {
 
 		return {
 			name: classDeclaration.getName(),
-			base: this.analyzeBase(baseClass, level)
+			base: this.analyzeBase(baseClass, level),
 		};
 	}
 
-
 	private analyzeBase(baseClass: ClassDeclaration, level: number): ClassInfo {
-		if (!baseClass)
-			return null;
+		if (!baseClass) return null;
 
-		if (level > 5)
-			return { name: 'Out of Recursive // TODO', base: null }; //TODO
+		if (level > 5) return { name: 'Out of Recursive // TODO', base: null }; //TODO
 
 		return this.analyzeClass(baseClass, level + 1);
 	}
-
 
 	private findAllExports(project: Project) {
 		const allFiles = project.getSourceFiles();
@@ -117,7 +109,7 @@ export class Analyzer {
 		for (const oneFile of allFiles) {
 			allExports = {
 				...allExports,
-				...this.findModuleExports(oneFile)
+				...this.findModuleExports(oneFile),
 			};
 		}
 		return allExports;
@@ -135,7 +127,7 @@ export class Analyzer {
 		for (const ns of namespaces) {
 			allExports = {
 				...allExports,
-				...this.findNamespaceExports(path, ns)
+				...this.findNamespaceExports(path, ns),
 			};
 		}
 
