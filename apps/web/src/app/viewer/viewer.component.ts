@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Presenter } from '@visual-ts/presenter';
+import { Presenter, Link, Node } from '@visual-ts/presenter';
 
 @Component({
 	selector: 'visual-ts-viewer',
@@ -7,13 +7,15 @@ import { Presenter } from '@visual-ts/presenter';
 	styleUrls: ['./viewer.component.scss'],
 })
 export class ViewerComponent implements AfterViewInit {
-	@ViewChild('svg')
-	svg: ElementRef;
+	nodes: Node[];
+	links: Link[];
 
-	constructor(private presenter: Presenter) {}
+	constructor(private presenter: Presenter) {
+		this.nodes = [new Node('kvak'), new Node('blak'), new Node('blak'), new Node('blakx')];
+		this.links = [new Link(this.nodes[0], this.nodes[1])];
+	}
 
 	ngAfterViewInit(): void {
-		this.presenter.present(null, this.svg.nativeElement);
 	}
 
 }
