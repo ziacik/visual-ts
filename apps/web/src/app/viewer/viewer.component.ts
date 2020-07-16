@@ -11,8 +11,29 @@ export class ViewerComponent implements AfterViewInit {
 	links: Link[];
 
 	constructor(private presenter: Presenter) {
-		this.nodes = [new Node('kvak'), new Node('blak'), new Node('blak'), new Node('blakx')];
-		this.links = [new Link(this.nodes[0], this.nodes[1])];
+		this.nodes = [];
+		this.links = [];
+
+		const N = 10;
+		const getIndex = number => number - 1;
+
+		/** constructing the nodes array */
+		for (let i = 1; i <= N; i++) {
+			this.nodes.push(new Node(i));
+		}
+
+		for (let i = 1; i <= N; i++) {
+			for (let m = 2; i * m <= N; m++) {
+				/** increasing connections toll on connecting nodes */
+				const node1 = this.nodes[getIndex(i)];
+				const node2 = this.nodes[getIndex(i * m)];
+				node1.linkCount++;
+				node2.linkCount++;
+
+				/** connecting the nodes before starting the simulation */
+				this.links.push(new Link(i, i * m));
+			}
+		}
 	}
 
 	ngAfterViewInit(): void {

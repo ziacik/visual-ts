@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { ForceDirectedGraph } from './force-directed-graph';
 import { Presenter } from './presenter';
 import { Link } from './link';
@@ -10,7 +10,7 @@ import { Node } from './node';
 	  <svg #svg [attr.width]="options.width" [attr.height]="options.height">
 		<g [zoomableOf]="svg">
 		  <g [linkVisual]="link" *ngFor="let link of links"></g>
-		  <g [nodeVisual]="node" *ngFor="let node of nodes"></g>
+		  <g [nodeVisual]="node" *ngFor="let node of nodes" [draggableNode]="node" [draggableInGraph]="graph"></g>
 		</g>
 	  </svg>
 	`,
@@ -22,6 +22,12 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
 	graph: ForceDirectedGraph;
 	private _options: { width: any, height: any } = { width: 1200, height: 1200 };
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event) {
+		this.graph.initSimulation(this.options);
+	}
+
 
 	constructor(private presenter: Presenter) { }
 
