@@ -1,27 +1,12 @@
-<ngx-graph class="chart-container" [links]="[
-    {
-      id: 'a',
-      source: 'first',
-    target: 'second',
-      label: 'is parent of'
-    }, {
-      id: 'b',
-      source: 'first',
-      target: 'third',
-      label: 'custom label'
-    }
-  ]" [nodes]="[
-    {
-      id: 'first',
-      label: 'A'
-    }, {
-      id: 'second',
-      label: 'B'
-    }, {
-      id: 'third',
-      label: 'C'
-    }
-  ]">
+<ngx-graph class="chart-container" [links]="(model$ | async).edges" [nodes]="(model$ | async).nodes">
+
+	<ng-template #nodeTemplate let-node>
+		<svg:g>
+			<rect [attr.rx]="node.dimension.height / 2" [attr.ry]="node.dimension.height" [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" class="node" />
+			<svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2 + 5">{{node.label}}</svg:text>
+		</svg:g>
+	</ng-template>
 </ngx-graph>
+
 
 <router-outlet></router-outlet>
