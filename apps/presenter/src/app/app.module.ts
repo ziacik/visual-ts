@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { AppComponent } from './app.component';
 
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, RouterModule.forRoot([], { initialNavigation: 'enabled' }), NgxGraphModule],
+	imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot([], { initialNavigation: 'enabled' }), NgxGraphModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
