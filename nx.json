@@ -25,15 +25,15 @@
 		"api-interfaces": {
 			"tags": []
 		},
-		"web": {
-			"tags": []
-		},
-		"web-e2e": {
-			"tags": [],
-			"implicitDependencies": ["web"]
-		},
 		"analyzer": {
 			"tags": []
+		},
+		"presenter": {
+			"tags": []
+		},
+		"presenter-e2e": {
+			"tags": [],
+			"implicitDependencies": ["presenter"]
 		}
 	}
 }

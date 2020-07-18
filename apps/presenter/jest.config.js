@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'web',
+	name: 'presenter',
 	preset: '../../jest.config.js',
-	coverageDirectory: '../../coverage/apps/web',
+	coverageDirectory: '../../coverage/apps/presenter',
 	snapshotSerializers: [
 		'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
 		'jest-preset-angular/build/AngularSnapshotSerializer.js',
