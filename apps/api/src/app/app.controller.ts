@@ -1,14 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { AppService } from './app.service';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ClassInfo } from '@visual-ts/api-interfaces';
+import { AppService } from './app.service';
 
-@Controller()
+@Controller('analysis')
 export class AppController {
-	constructor(private readonly appService: AppService) {}
+	constructor(private readonly appService: AppService) { }
 
-	@Get('hello')
-	getData(): ClassInfo {
-		return this.appService.getData();
+	@Get()
+	analyze(@Query('file') pathToFile: string, @Query('class') className: string): ClassInfo {
+		return this.appService.analyze(pathToFile, className);
 	}
 }

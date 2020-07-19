@@ -21,9 +21,10 @@ describe('AppService', () => {
 		service = app.get<AppService>(AppService);
 	});
 
-	describe('getData', () => {
-		it('uses Analyzer to analyze generate analysis and returns it', () => {
-			expect(service.getData()).toEqual(testClassInfo);
+	describe('analyze', () => {
+		it('uses Analyzer to generate analysis and returns it', () => {
+			expect(service.analyze('/path/to.ts', 'SomeClass')).toEqual(testClassInfo);
+			expect(analyzer.analyze).toHaveBeenCalledWith('/path/to.ts', 'SomeClass');
 		});
 	});
 });

@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 describe('AppController', () => {
 	let app: TestingModule;
 	let testClassInfo: ClassInfo;
+	let appService: AppService;
 
 	beforeAll(async () => {
 		testClassInfo = { name: 'someclass', base: null };
@@ -15,14 +16,15 @@ describe('AppController', () => {
 			providers: [AppService, Analyzer],
 		}).compile();
 
-		const appService = app.get<AppService>(AppService);
-		jest.spyOn(appService, 'getData').mockReturnValue(testClassInfo);
+		appService = app.get<AppService>(AppService);
+		jest.spyOn(appService, 'analyze').mockReturnValue(testClassInfo);
 	});
 
-	describe('getData', () => {
-		it('uses AppService to getData', () => {
+	describe('analyze', () => {
+		it('uses AppService to retrieve analysis for the path and class specified and returns it', () => {
 			const appController = app.get<AppController>(AppController);
-			expect(appController.getData()).toEqual(testClassInfo);
+			expect(appController.analyze('/path/to.ts', 'SomeClass')).toEqual(testClassInfo);
+			expect(appService.analyze).toHaveBeenCalledWith('/path/to.ts', 'SomeClass');
 		});
 	});
 });

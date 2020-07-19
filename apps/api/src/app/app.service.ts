@@ -6,7 +6,7 @@ import { ClassInfo } from '@visual-ts/api-interfaces';
 export class AppService {
 	constructor(private analyzer: Analyzer) {}
 
-	getData(): ClassInfo {
-		return this.analyzer.analyze('/home/ziacik/Workspaces/WebApp/src/MobileCrm/Controllers/Activity/phoneCallForm/phoneCallForm.ts', 'PhoneCallForm');
+	analyze(pathToFile: string, className?: string): ClassInfo {
+		return this.analyzer.analyze(pathToFile, className);
 	}
 }

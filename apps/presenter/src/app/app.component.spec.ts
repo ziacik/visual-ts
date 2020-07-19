@@ -29,7 +29,7 @@ describe('AppComponent', () => {
 		expect(app).toBeTruthy();
 	});
 
-	it('uses ModelSerice to retrieve a model for the graph', async () => {
+	it('uses ModelService to retrieve a model for the graph', async () => {
 		const fixture = TestBed.createComponent(AppComponent);
 		const app = fixture.componentInstance;
 		app.ngOnInit();
