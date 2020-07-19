@@ -1,9 +1,5 @@
-import { Project, Node, ClassDeclaration } from 'ts-morph';
-
-export interface ClassInfo {
-	name: string;
-	base: ClassInfo;
-}
+import { ClassInfo } from '@visual-ts/api-interfaces';
+import { ClassDeclaration, Node, Project } from 'ts-morph';
 
 export class Analyzer {
 	static readonly messages = {};

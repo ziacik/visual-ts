@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Message } from '@visual-ts/api-interfaces';
+import { Analyzer } from '@visual-ts/analyzer';
+import { ClassInfo } from '@visual-ts/api-interfaces';
 
 @Injectable()
 export class AppService {
-	getData(): Message {
-		return { message: 'Welcome to api!' };
+	constructor(private analyzer: Analyzer) {}
+
+	getData(): ClassInfo {
+		return this.analyzer.analyze('/home/ziacik/Workspaces/WebApp/src/MobileCrm/UI/Hub/entityHub/entityHub.ts', 'EntityHub');
 	}
 }

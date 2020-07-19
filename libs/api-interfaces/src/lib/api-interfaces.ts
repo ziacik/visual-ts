@@ -1,3 +1,4 @@
-export interface Message {
-	message: string;
+export interface ClassInfo {
+	name: string;
+	base: ClassInfo;
 }
