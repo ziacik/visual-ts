@@ -12,7 +12,7 @@ export class ModelService {
 	constructor(private http: HttpClient) {}
 
 	load(): Observable<Model> {
-		return this.http.get('http://localhost:3333/api/hello').pipe(map((classInfo) => this.toModel(classInfo as ClassInfo)));
+		return this.http.get('http://localhost:3333/api/analysis?file=entityHub.ts&class=EntityHub').pipe(map((classInfo) => this.toModel(classInfo as ClassInfo)));
 	}
 
 	private toModel(classInfo: ClassInfo): Model {
