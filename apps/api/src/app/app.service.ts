@@ -7,6 +7,6 @@ export class AppService {
 	constructor(private analyzer: Analyzer) {}
 
 	getData(): ClassInfo {
-		return this.analyzer.analyze('/home/ziacik/Workspaces/WebApp/src/MobileCrm/UI/Hub/entityHub/entityHub.ts', 'EntityHub');
+		return this.analyzer.analyze('/home/ziacik/Workspaces/WebApp/src/MobileCrm/Controllers/Activity/phoneCallForm/phoneCallForm.ts', 'PhoneCallForm');
 	}
 }
