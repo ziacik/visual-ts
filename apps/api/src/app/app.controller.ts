@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 
 @Controller('analysis')
 export class AppController {
-	constructor(private readonly appService: AppService) { }
+	constructor(private readonly appService: AppService) {}
 
 	@Get()
 	analyze(@Query('file') pathToFile: string, @Query('class') className: string): ClassInfo {

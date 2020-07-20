@@ -239,6 +239,42 @@
 					}
 				}
 			}
+		},
+		"vscode": {
+			"root": "libs/vscode",
+			"sourceRoot": "libs/vscode/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/vscode/tsconfig.lib.json",
+							"libs/vscode/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!libs/vscode/**/*"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/vscode/jest.config.js",
+						"tsConfig": "libs/vscode/tsconfig.spec.json",
+						"passWithNoTests": true
+					}
+				},
+				"build": {
+					"builder": "@nrwl/node:package",
+					"options": {
+						"outputPath": "dist/libs/vscode",
+						"tsConfig": "libs/vscode/tsconfig.lib.json",
+						"packageJson": "libs/vscode/package.json",
+						"main": "libs/vscode/src/index.ts",
+						"assets": ["libs/vscode/*.md"]
+					}
+				}
+			}
 		}
 	},
 	"cli": {

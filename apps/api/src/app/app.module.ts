@@ -22,4 +22,4 @@ console.log(`Using ts config file: ${tsconfigPath}.`);
 		},
 	],
 })
-export class AppModule { }
+export class AppModule {}

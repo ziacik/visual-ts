@@ -11,8 +11,7 @@ import { ModelService } from './model.service';
 export class AppComponent implements OnInit {
 	model$: Observable<Model>;
 
-	constructor(private modelService: ModelService) {
-	}
+	constructor(private modelService: ModelService) {}
 
 	ngOnInit(): void {
 		this.model$ = this.modelService.load();
