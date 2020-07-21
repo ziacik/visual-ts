@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Model } from './model';
 import { ModelService } from './model.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
 	selector: 'visual-ts-root',
@@ -14,6 +15,6 @@ export class AppComponent implements OnInit {
 	constructor(private modelService: ModelService) {}
 
 	ngOnInit(): void {
-		this.model$ = this.modelService.load();
+		this.model$ = this.modelService.load().pipe(tap(x => console.log('loaded', x)));
 	}
 }

@@ -6,10 +6,13 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { AppComponent } from './app.component';
 import { ModelService } from './model.service';
 import { HttpClientModule } from '@angular/common/http';
+import { XComponent } from './x.component';
 
 @NgModule({
-	declarations: [AppComponent],
-	imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot([], { initialNavigation: 'enabled' }), NgxGraphModule],
+	declarations: [AppComponent, XComponent],
+	imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot([
+		{ path: '**', component: XComponent }
+	], { initialNavigation: 'enabled' }), NgxGraphModule],
 	providers: [ModelService],
 	bootstrap: [AppComponent],
 })
