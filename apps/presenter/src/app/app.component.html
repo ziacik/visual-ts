@@ -1,26 +1,16 @@
-<ngx-graph
-	class="chart-container"
-	[links]="(model$ | async).edges"
-	[nodes]="(model$ | async).nodes"
->
-	<ng-template #nodeTemplate let-node>
-		<svg:g>
-			<rect
-				[attr.rx]="node.dimension.height / 2"
-				[attr.ry]="node.dimension.height"
-				[attr.width]="node.dimension.width"
-				[attr.height]="node.dimension.height"
-				class="node"
-			/>
-			<svg:text
-				alignment-baseline="central"
-				[attr.x]="10"
-				[attr.y]="node.dimension.height / 2 + 5"
-			>
-				{{ node.label }}
-			</svg:text>
-		</svg:g>
-	</ng-template>
-</ngx-graph>
+<div *ngIf="model$ | async as model">
+	<ngx-graph class="chart-container" [links]="model.edges" [nodes]="model.nodes">
+		<ng-template #nodeTemplate let-node>
+			<svg:g>
+				<rect [attr.rx]="node.dimension.height / 2" [attr.ry]="node.dimension.height"
+					[attr.width]="node.dimension.width" [attr.height]="node.dimension.height" class="node" />
+				<svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2 + 5">
+					{{ node.label }}
+				</svg:text>
+			</svg:g>
+		</ng-template>
+	</ngx-graph>
+
+</div>
 
 <router-outlet></router-outlet>

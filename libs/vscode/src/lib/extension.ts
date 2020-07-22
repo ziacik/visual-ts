@@ -137,17 +137,17 @@ class CatCodingPanel {
 
 	private _getHtmlForWebview(webview: vscode.Webview, catGifPath: string) {
 		// Local path to main script run in the webview
-		
+
 
 		const getUriFor = scr => {
 			const scriptPathOnDisk = vscode.Uri.file(
 				path.join(this._extensionPath, 'dist/apps/presenter', scr)
 			);
-	
-	
+
+
 			// And the uri we use to load this script in the webview
 			const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
-	
+
 			// Use a nonce to whitelist which scripts can be run
 
 			return scriptUri;
@@ -160,7 +160,7 @@ class CatCodingPanel {
 		<html lang="en">
 			<head>
 				<meta charset="utf-8" />
-				<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http://localhost:3333; img-src ${webview.cspSource} https:; script-src ${webview.cspSource}; style-src ${webview.cspSource};" />
+				<meta http-equiv="Content-Security-Policy" content="style-src 'unsafe-inline'; default-src 'self'; connect-src 'self' http://localhost:3333; img-src ${webview.cspSource} https:; script-src ${webview.cspSource};" />
 				<title>Presenter</title>
 				<base href="/" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -169,11 +169,11 @@ class CatCodingPanel {
 			<body>
 			KVAK 3
 				<visual-ts-root></visual-ts-root>
-				<script nonce="${nonce}" src="${getUriFor('runtime-es5.js')}"  defer></script>
-				<script nonce="${nonce}" src="${getUriFor('polyfills-es5.js')}"  defer></script>
-				<script nonce="${nonce}" src="${getUriFor('styles-es5.js')}"  defer></script>
-				<script nonce="${nonce}" src="${getUriFor('vendor-es5.js')}"  defer></script>
-				<script nonce="${nonce}" src="${getUriFor('main-es5.js')}"  defer></script></body>
+				<script nonce="${nonce}" src="${getUriFor('runtime-es2015.js')}"  type="module"></script>
+				<script nonce="${nonce}" src="${getUriFor('polyfills-es2015.js')}"  type="module"></script>
+				<script nonce="${nonce}" src="${getUriFor('styles-es2015.js')}"  type="module"></script>
+				<script nonce="${nonce}" src="${getUriFor('vendor-es2015.js')}"  type="module"></script>
+				<script nonce="${nonce}" src="${getUriFor('main-es2015.js')}"  type="module"></script></body>
 
 				</html>
 		`;
