@@ -153,6 +153,20 @@ class CatCodingPanel {
 			return scriptUri;
 		};
 
+		const getLibUriFor = src => {
+			const scriptPathOnDisk = vscode.Uri.file(
+				path.join(this._extensionPath, 'libs/vscode/src/lib/', src)
+			);
+
+
+			// And the uri we use to load this script in the webview
+			const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
+
+			// Use a nonce to whitelist which scripts can be run
+
+			return scriptUri;
+		};
+
 		const nonce = getNonce();
 
 
@@ -164,6 +178,7 @@ class CatCodingPanel {
 				<title>Presenter</title>
 				<base href="/" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<script nonce="${nonce}" src="${getLibUriFor('webview-vscode-api.setup.js')}"></script>
 			</head>
 			<body>
 				<visual-ts-root></visual-ts-root>

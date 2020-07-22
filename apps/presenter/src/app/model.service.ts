@@ -12,6 +12,9 @@ export class ModelService {
 	constructor(private http: HttpClient) {}
 
 	load(): Observable<Model> {
+		const vscode = window['vscode'];
+		console.log('API', vscode);
+
 		return this.http
 			.get('http://localhost:3333/api/analysis?file=entityHub.ts&class=EntityHub')
 			.pipe(map((classInfo) => this.toModel(classInfo as ClassInfo)));
