@@ -6,20 +6,20 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { of } from 'rxjs';
 import { AppComponent } from './app.component';
 import { Model } from './model';
-import { ModelService } from './model.service';
+import { HttpModelService } from './http-model.service';
 
 describe('AppComponent', () => {
 	let testModel: Model;
-	let modelService: ModelService;
+	let modelService: HttpModelService;
 
 	beforeEach(async(() => {
 		testModel = new Model(null, null);
 		TestBed.configureTestingModule({
 			imports: [RouterTestingModule, NgxGraphModule, NoopAnimationsModule, HttpClientModule],
-			providers: [ModelService],
+			providers: [HttpModelService],
 			declarations: [AppComponent],
 		}).compileComponents();
-		modelService = TestBed.inject(ModelService);
+		modelService = TestBed.inject(HttpModelService);
 		jest.spyOn(modelService, 'load').mockReturnValue(of(testModel));
 	}));
 

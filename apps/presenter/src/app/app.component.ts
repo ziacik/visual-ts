@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Model } from './model';
 import { ModelService } from './model.service';
-import { tap } from 'rxjs/operators';
 
 @Component({
 	selector: 'visual-ts-root',
