@@ -15,9 +15,7 @@ export class HttpModelService extends ModelService {
 	}
 
 	load(): Observable<Model> {
-		return this.http
-			.get('http://localhost:3333/api/analysis?file=entityHub.ts&class=EntityHub')
-			.pipe(map((classInfo) => this.toModel(classInfo as ClassInfo)));
+		return this.http.get('http://localhost:3333/api/analysis?file=entityHub.ts&class=EntityHub').pipe(map((classInfo) => this.toModel(classInfo as ClassInfo)));
 	}
 
 	private toModel(classInfo: ClassInfo): Model {

@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
 	constructor(private modelService: ModelService) {}
 
 	ngOnInit(): void {
-		this.model$ = this.modelService.load().pipe(tap(x => console.log('loaded', x)));
+		this.model$ = this.modelService.load();
 	}
 }

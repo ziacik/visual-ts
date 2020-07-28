@@ -1,12 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { of } from 'rxjs';
 import { AppComponent } from './app.component';
-import { Model } from './model';
 import { HttpModelService } from './http-model.service';
+import { Model } from './model';
+import { ModelService } from './model.service';
 
 describe('AppComponent', () => {
 	let testModel: Model;
@@ -14,13 +14,13 @@ describe('AppComponent', () => {
 
 	beforeEach(async(() => {
 		testModel = new Model(null, null);
+		modelService = new HttpModelService(null);
+		jest.spyOn(modelService, 'load').mockReturnValue(of(testModel));
 		TestBed.configureTestingModule({
-			imports: [RouterTestingModule, NgxGraphModule, NoopAnimationsModule, HttpClientModule],
-			providers: [HttpModelService],
+			imports: [RouterTestingModule, NgxGraphModule, NoopAnimationsModule],
+			providers: [{ provide: ModelService, useValue: modelService }],
 			declarations: [AppComponent],
 		}).compileComponents();
-		modelService = TestBed.inject(HttpModelService);
-		jest.spyOn(modelService, 'load').mockReturnValue(of(testModel));
 	}));
 
 	it('should create the app', () => {

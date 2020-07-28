@@ -10,19 +10,25 @@ import { ModelService } from './model.service';
 import { VsCodeModelService } from './vscode-model.service';
 import { XComponent } from './x.component';
 
-console.log('GOT IT?', window['vscode'])
+console.log('GOT IT?', window['vscode']);
 
 const modelService = window['vscode'] ? VsCodeModelService : HttpModelService;
 
 @NgModule({
 	declarations: [AppComponent, XComponent],
-	imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot([
-		{ path: '**', component: XComponent }
-	], { initialNavigation: 'enabled' }), NgxGraphModule],
-	providers: [{
-		provide: ModelService,
-		useClass: modelService
-	}],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		RouterModule.forRoot([{ path: '**', component: XComponent }], { initialNavigation: 'enabled' }),
+		NgxGraphModule,
+	],
+	providers: [
+		{
+			provide: ModelService,
+			useClass: modelService,
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
