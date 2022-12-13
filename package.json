@@ -59,7 +59,7 @@
 		"@angular/router": "^9.1.0",
 		"@nestjs/common": "^6.8.3",
 		"@nestjs/core": "^6.8.3",
-		"@nestjs/platform-express": "^6.8.3",
+		"@nestjs/platform-express": "^9.2.1",
 		"@nrwl/angular": "9.4.5",
 		"@swimlane/ngx-graph": "^7.0.1",
 		"reflect-metadata": "^0.1.13",
